@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 backup_old_files() {
-  mkdir backup
-  mv ~/.config/nvim/ ~/.local/share/nvim ~/.local/state/nvim ./backup
+  if [ ! -d ./backup ]; then
+    mkdir backup
+  fi
+  mv ~/.config/nvim/ ./backup/conf
+  mv ~/.local/share/nvim ./backup/share
+  mv ~/.local/state/nvim ./backup/state
 }
 
 clone_nvchad() {
@@ -10,7 +14,7 @@ clone_nvchad() {
 }
 
 stow_dots() {
-  stow --target=/home/$(whoami) dots --adopt 
+  stow --target=/home/$(whoami) --restow dots
 }
 
 echo "Backing up old files in $(dirname "$0")."
