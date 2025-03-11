@@ -42,6 +42,8 @@ return {
         "vimdoc",
         "html",
         "css",
+        "markdown",
+        "markdown_inline",
         "javascript",
         "typescript",
         "hyprlang",
@@ -51,5 +53,10 @@ return {
         "python",
       },
     },
+  },
+
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
   },
 }
