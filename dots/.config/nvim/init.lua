@@ -32,6 +32,16 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
+vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/lua_snippets"
+require("luasnip").config.set_config { -- Setting LuaSnip config
+
+  -- Enable autotriggered snippets
+  enable_autosnippets = true,
+
+  -- Use Tab (or some other key if you prefer) to trigger visual selection
+  store_selection_keys = "<Tab>",
+}
+
 vim.schedule(function()
   require "mappings"
 end)
@@ -70,9 +80,6 @@ autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
-  pattern = "/home/xitonight/dotfiles/dots/.config/hypr/*",
-  callback = function()
-    vim.bo.filetype = "hyprland"
-  end,
-})
+vim.filetype.add {
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+}
