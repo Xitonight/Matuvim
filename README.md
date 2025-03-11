@@ -1,6 +1,19 @@
 # Neoconf ⚠️ WIP ⚠️
 
-This is nothing but a really simple Neovim setup based on [NvChad](https://nvchad.com/) with some tweaks.
+This is nothing but a really simple Neovim setup based on [NvChad](https://nvchad.com/) and [NvChad's pywal](https://github.com/NvChad/pywal) by [Axenide](https://github.com/Axenide) with some tweaks.
+
+<h2><sub><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Camera%20with%20Flash.png" alt="Camera with Flash" width="25" height="25" /></sub> Screenshots</h2>
+<table align="center">
+  <tr>
+    <td colspan="4"><img src="assets/1.png"></td>
+  </tr>
+  <tr>
+    <td colspan="1"><img src="assets/2.png"></td>
+    <td colspan="1"><img src="assets/3.png"></td>
+    <td colspan="1" align="center"><img src="assets/4.png"></td>
+    <td colspan="1" align="center"><img src="assets/5.png"></td>
+  </tr>
+</table>
 
 ## Installation
 
@@ -60,3 +73,7 @@ rm -rf ~/.local/state/nvim
 And uninstall the packages, that's it.
 
 If you need any help feel free to open an issue or to contact me directly :)
+
+## Credits
+
+I want to thank [Axenide](https://github.com/Axenide) for this absurdly well done plugin and for all i've learnt from him.
