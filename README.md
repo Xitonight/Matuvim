@@ -23,7 +23,7 @@ chmod +x ./install.sh
 This will create a **backup** folder containing your old dotfiles if you had any.
 The script will use stow, so it won't copy the files to your ~/.config folder, it will only create symlinks to the files inside the cloned repo, so make sure not to delete it after the installation (unless you want to manually copy the files).
 
-> [!BUG]
+> [!NOTE]
 > For some reason it is pretty common to get an error due to base46 not cloning all the resources needed. In case you get an error regarding some missing files from base64 just rerun the installation script.
 
 ## Uninstalling
