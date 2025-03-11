@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e 
+set -e
 set -u
 set -o pipefail
 
@@ -17,20 +17,20 @@ PACKAGES=(
 install_aur_helper() {
   aur_helper=""
   if command -v yay &>/dev/null; then
-      aur_helper="yay"
-      echo $aur_helper
+    aur_helper="yay"
+    echo $aur_helper
   elif command -v paru &>/dev/null; then
-      aur_helper="paru"
-      echo $aur_helper
+    aur_helper="paru"
+    echo $aur_helper
   else
-      echo "Installing yay-bin..."
-      tmpdir=$(mktemp -d)
-      git clone https://aur.archlinux.org/yay-bin.git "$tmpdir/yay-bin"
-      cd "$tmpdir/yay-bin"
-      makepkg -si --noconfirm
-      cd - > /dev/null
-      rm -rf "$tmpdir"
-      aur_helper="yay"
+    echo "Installing yay-bin..."
+    tmpdir=$(mktemp -d)
+    git clone https://aur.archlinux.org/yay-bin.git "$tmpdir/yay-bin"
+    cd "$tmpdir/yay-bin"
+    makepkg -si --noconfirm
+    cd - >/dev/null
+    rm -rf "$tmpdir"
+    aur_helper="yay"
   fi
 }
 
@@ -42,25 +42,25 @@ install_requirements() {
   outdated=$($aur_helper -Qu | awk '{print $1}')
   to_update=()
   for pkg in "${PACKAGES[@]}"; do
-      if echo "$outdated" | grep -q "^$pkg\$"; then
-          to_update+=("$pkg")
-      fi
+    if echo "$outdated" | grep -q "^$pkg\$"; then
+      to_update+=("$pkg")
+    fi
   done
 
   if [ ${#to_update[@]} -gt 0 ]; then
-      $aur_helper -S --noconfirm "${to_update[@]}" || true
+    $aur_helper -S --noconfirm "${to_update[@]}" || true
   else
-      echo "All required packages are up-to-date."
+    echo "All required packages are up-to-date."
   fi
 }
 
 clone_repo() {
   if [ -d "$INSTALL_DIR" ]; then
-      echo "Updating neoconf..."
-      git -C "$INSTALL_DIR" pull
+    echo "Updating neoconf..."
+    git -C "$INSTALL_DIR" pull
   else
-      echo "Cloning neoconf..."
-      git clone "$REPO_URL" "$INSTALL_DIR"
+    echo "Cloning neoconf..."
+    git clone "$REPO_URL" "$INSTALL_DIR"
   fi
 }
 

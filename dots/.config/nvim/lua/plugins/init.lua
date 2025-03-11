@@ -39,6 +39,7 @@ return {
         "vim",
         "lua",
         "bash",
+        "cpp",
         "vimdoc",
         "html",
         "css",

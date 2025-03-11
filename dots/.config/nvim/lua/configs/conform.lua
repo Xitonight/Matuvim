@@ -6,7 +6,7 @@ local options = {
     javascript = { "prettier", "prettierd", stop_after_first = true },
     typescript = { "prettier", "prettierd", stop_after_first = true },
     json = { "prettier", "prettierd", stop_after_first = true },
-    bash = { "shfmt" },
+    sh = { "shfmt" },
     python = { "black" },
     toml = { "taplo" },
   },
