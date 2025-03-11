@@ -1,0 +1,27 @@
+[config]
+reload_apps = true
+
+[config.wallpaper]
+command = "swww"
+arguments = [
+  "img",
+  "-t",
+  "outer",
+  "--transition-duration",
+  "1.5",
+  "--transition-step",
+  "255",
+  "--transition-fps",
+  "60",
+  "-f",
+  "Nearest",
+]
+set = true
+
+[templates.nvim]
+input_path = "~/.config/nvim/pywal/matugen.lua"
+output_path = "~/.cache/wal/base46-dark.lua"
+
+[templates.pywal]
+input_path = "~/.config/matugen/templates/colors-pywal"
+output_path = "~/.cache/wal/colors"
