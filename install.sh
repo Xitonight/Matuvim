@@ -70,16 +70,24 @@ backup_old_files() {
     mkdir -p backup/matugen/
   fi
   if [ -d ~/.config/nvim ]; then
-    mv ~/.config/nvim/* ./backup/conf
+    if [ "$(ls -a ~/.config/nvim)" ]; then
+      mv ~/.config/nvim/* ./backup/conf
+    fi
   fi
   if [ -d ~/.local/share/nvim ]; then
-    mv ~/.local/share/nvim/* ./backup/share
+    if [ "$(ls -a ~/.local/share/nvim)" ]; then
+      mv ~/.local/share/nvim/* ./backup/share
+    fi
   fi
   if [ -d ~/.local/state/nvim ]; then
-    mv ~/.local/state/nvim/* ./backup/state
+    if [ "$(ls -a ~/.local/state/nvim)" ]; then
+      mv ~/.local/state/nvim/* ./backup/state
+    fi
   fi
   if [ -d ~/.config/matugen ]; then
-    mv ~/.config/matugen/* ./backup/matugen
+    if [ "$(ls -a ~/.config/matugen)" ]; then
+      mv ~/.config/matugen/* ./backup/matugen
+    fi
   fi
 }
 
