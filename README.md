@@ -34,9 +34,15 @@ Actually, i could, but it's a pain in the arse. So please backup your files howe
 
 ## Installation
 
-### On Arch Linux
+> [!WARNING]
+> For some reason it is pretty common to get an error due to base46 not cloning correctly all the resources needed. In case you get an error regarding some missing files from base64 just rerun the installation script / follow the guide again.
+
+<h3><sub><img src="http://wiki.installgentoo.com/images/f/f9/Arch-linux-logo.png" width=22 height=22/></sub> On Arch Linux</h3>
 
 On Arch Linux you can use a custom installation script i wrote.
+> [!NOTE]
+> You still need to follow [step 2](#step2).
+
 Simply run this command:
 
 ```bash
@@ -46,12 +52,16 @@ curl -fsSL https://raw.githubusercontent.com/Xitonight/neoconf/main/install.sh |
 > [!NOTE]
 > The script will use stow, so it won't copy the files to your ~/.config folder, it will only create symlinks to the files inside the cloned repo, so make sure not to delete it after the installation (unless you want to manually copy the files).
 
-### On other distros
+
+<h3><sub><img src="http://wiki.installgentoo.com/images/5/5b/Ubuntu.png" width=22 height=22/></sub> On other distros</h3>
+
+#### 1️⃣ Step
 
 Make sure you have installed all the required packages, else the config might not work as expected.
 All the packages should be available on your Linux package manager, so install them like you would install any other package.
 
 - [GNU stow](https://www.gnu.org/software/stow/)
+- [swww](https://github.com/LGFae/swww)
 - [npm](https://www.npmjs.com), (i'd suggest to install npm through the usage of [node version manager](https://github.com/nvm-sh/nvm))
 - [matugen](https://github.com/InioX/matugen) 
 - [python-watchdog](https://pypi.org/project/watchdog/)
@@ -76,10 +86,45 @@ stow --target=$HOME dots
 nvim
 ```
 
-----------
+<a id="step2"></a>
+#### 2️⃣ Step
 
-> [!WARNING]
-> For some reason it is pretty common to get an error due to base46 not cloning correctly all the resources needed. In case you get an error regarding some missing files from base64 just rerun the installation script / follow the guide again.
+Now to get a colorscheme matching your wallpaper you'll have to use Matugen.
+Create a file called `~/.config/matugen/config.toml` (or modify it if you already have one) and paste this inside of it, alongside your existing config if you got one:
+
+```toml
+[config]
+reload_apps = true
+
+[config.wallpaper]
+command = "swww"
+arguments = [
+  "img",
+  "-t",
+  "outer",
+  "--transition-duration",
+  "1.5",
+  "--transition-step",
+  "255",
+  "--transition-fps",
+  "60",
+  "-f",
+  "Nearest",
+]
+set = true
+
+[templates.nvim]
+input_path = "~/.config/nvim/pywal/matugen.lua"
+output_path = "~/.cache/wal/base46-dark.lua"
+
+[templates.pywal]
+input_path = "~/.config/matugen/templates/colors-pywal"
+output_path = "~/.cache/wal/colors"
+```
+
+## Usage
+
+Now that everything's installed, every time you run `matugen image <path_to_your_wallpaper>` you'll see that neovim will use a fresh new color scheme based on your wallpaper. 
 
 ## Uninstalling
 
@@ -98,3 +143,4 @@ If you need any help feel free to open an issue or to contact me directly :)
 ## Credits
 
 I want to thank [Axenide](https://github.com/Axenide) for this absurdly well done plugin and for all i've learnt from him.
+
