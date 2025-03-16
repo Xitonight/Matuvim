@@ -15,6 +15,23 @@ This is nothing but a really simple Neovim setup based on [NvChad](https://nvcha
   </tr>
 </table>
 
+## Backing up your files
+
+> [!CAUTION]
+> Installing this dotfiles will overwrite your pre-existing dotfiles so make sure to backup your configuration if you don't want to lose it!
+
+Folders that you might be interested in backing up:
+- `~/.config/nvim/`
+- `~/.local/share/nvim/`
+- `~/.local/state/nvim/`
+
+### Little F.A.Q. about this
+
+> "Why don't you implement an automatic backup system? / Will you ever implement one?"
+
+The answer is and will probably always be no. Everyone could have different ways to handle dotfiles and i can't make a universal script for it.
+Actually, i could, but it's a pain in the arse. So please backup your files however you might find to be more comfortable and then proceed with installation.
+
 ## Installation
 
 ### On Arch Linux
@@ -26,12 +43,10 @@ Simply run this command:
 curl -fsSL https://raw.githubusercontent.com/Xitonight/neoconf/main/install.sh | bash
 ```
 
-This will automatically create a **backup** folder containing your old dotfiles if you had any.
-
 > [!NOTE]
 > The script will use stow, so it won't copy the files to your ~/.config folder, it will only create symlinks to the files inside the cloned repo, so make sure not to delete it after the installation (unless you want to manually copy the files).
 
-### Requisites
+### On other distros
 
 Make sure you have installed all the required packages, else the config might not work as expected.
 All the packages should be available on your Linux package manager, so install them like you would install any other package.
@@ -42,23 +57,29 @@ All the packages should be available on your Linux package manager, so install t
 - [python-watchdog](https://pypi.org/project/watchdog/)
 - [pywal](https://github.com/dylanaraps/pywal) 
 
-----------
-
-Once you have installed the required packages, run these commands, but first make sure to backup your old dotfiles:
+Once you have installed the required packages, run these commands:
 
 ```bash
-mkdir nvim.bkp
-cp -r ~/.config/nvim/ ~/.local/share/nvim/ ~/.local/state/nvim ./nvim.bkp
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
 ```
+
+This will clone NvChad, open neovim and all the required plugins for NvChad to work.
+After it's done installing close neovim (escape the maze) and run these commands to finish the installation:
 
 ```bash
 git clone https://github.com/Xitonight/neoconf
 cd neoconf
 stow --target=$HOME dots
+nvim
 ```
 
+----------
+
 > [!WARNING]
-> For some reason it is pretty common to get an error due to base46 not cloning correctly all the resources needed. In case you get an error regarding some missing files from base64 just rerun the installation script.
+> For some reason it is pretty common to get an error due to base46 not cloning correctly all the resources needed. In case you get an error regarding some missing files from base64 just rerun the installation script / follow the guide again.
 
 ## Uninstalling
 
