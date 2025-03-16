@@ -69,10 +69,10 @@ backup_old_files() {
     mkdir -p $INSTALL_DIR/backup/nvim/{conf,share,state}
     mkdir -p $INSTALL_DIR/backup/matugen/
   fi
-  cp -r ~/.config/nvim/* $INSTALL_DIR/backup/conf
-  cp -r ~/.local/share/nvim/* ./backup/share
-  cp -r ~/.local/state/nvim/* ./backup/state
-  cp -r ~/.config/matugen/* ./backup/matugen
+  cp -r ~/.config/nvim/* $INSTALL_DIR/backup/conf &>/dev/null
+  cp -r ~/.local/share/nvim/* ./backup/share &>/dev/null
+  cp -r ~/.local/state/nvim/* ./backup/state &>/dev/null
+  cp -r ~/.config/matugen/* ./backup/matugen &>/dev/null 
 }
 
 clone_nvchad() {
