@@ -69,10 +69,18 @@ backup_old_files() {
     mkdir -p backup/nvim/{conf,share,state}
     mkdir -p backup/matugen/
   fi
-  mv ~/.config/nvim/* ./backup/conf
-  mv ~/.local/share/nvim/* ./backup/share
-  mv ~/.local/state/nvim/* ./backup/state
-  mv ~/.config/matugen/* ./backup/matugen
+  if [ -d ~/.config/nvim ]; then
+    mv ~/.config/nvim/* ./backup/conf
+  fi
+  if [ -d ~/.local/share/nvim ]; then
+    mv ~/.local/share/nvim/* ./backup/share
+  fi
+  if [ -d ~/.local/state/nvim ]; then
+    mv ~/.local/state/nvim/* ./backup/state
+  fi
+  if [ -d ~/.config/matugen ]; then
+    mv ~/.config/matugen/* ./backup/matugen
+  fi
 }
 
 clone_nvchad() {
@@ -83,7 +91,7 @@ clone_nvchad() {
 }
 
 stow_dots() {
-  stow --target=$HOME dots
+  stow --target=$HOME --dir=$INSTALL_DIR dots
 }
 
 echo "Backing up old files in $INSTALL_DIR/backup..."
