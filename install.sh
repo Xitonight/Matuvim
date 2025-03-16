@@ -71,22 +71,22 @@ backup_old_files() {
   fi
   if [ -d ~/.config/nvim ]; then
     if [ "$(ls -a ~/.config/nvim)" ]; then
-      mv ~/.config/nvim/* ./backup/conf
+      cp -r ~/.config/nvim/* ./backup/conf
     fi
   fi
   if [ -d ~/.local/share/nvim ]; then
     if [ "$(ls -a ~/.local/share/nvim)" ]; then
-      mv ~/.local/share/nvim/* ./backup/share
+      cp -r ~/.local/share/nvim/* ./backup/share
     fi
   fi
   if [ -d ~/.local/state/nvim ]; then
     if [ "$(ls -a ~/.local/state/nvim)" ]; then
-      mv ~/.local/state/nvim/* ./backup/state
+      cp -r ~/.local/state/nvim/* ./backup/state
     fi
   fi
   if [ -d ~/.config/matugen ]; then
     if [ "$(ls -a ~/.config/matugen)" ]; then
-      mv ~/.config/matugen/* ./backup/matugen
+      cp -r ~/.config/matugen/* ./backup/matugen
     fi
   fi
 }
