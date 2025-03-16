@@ -65,30 +65,14 @@ clone_repo() {
 }
 
 backup_old_files() {
-  if [ ! -d ./backup ]; then
-    mkdir -p backup/nvim/{conf,share,state}
-    mkdir -p backup/matugen/
+  if [ ! -d $INSTALL_DIR/backup ]; then
+    mkdir -p $INSTALL_DIR/backup/nvim/{conf,share,state}
+    mkdir -p $INSTALL_DIR/backup/matugen/
   fi
-  if [ -d ~/.config/nvim ]; then
-    if [ "$(ls -a ~/.config/nvim)" ]; then
-      cp -r ~/.config/nvim/* ./backup/conf
-    fi
-  fi
-  if [ -d ~/.local/share/nvim ]; then
-    if [ "$(ls -a ~/.local/share/nvim)" ]; then
-      cp -r ~/.local/share/nvim/* ./backup/share
-    fi
-  fi
-  if [ -d ~/.local/state/nvim ]; then
-    if [ "$(ls -a ~/.local/state/nvim)" ]; then
-      cp -r ~/.local/state/nvim/* ./backup/state
-    fi
-  fi
-  if [ -d ~/.config/matugen ]; then
-    if [ "$(ls -a ~/.config/matugen)" ]; then
-      cp -r ~/.config/matugen/* ./backup/matugen
-    fi
-  fi
+  cp -r ~/.config/nvim/* $INSTALL_DIR/backup/conf
+  cp -r ~/.local/share/nvim/* ./backup/share
+  cp -r ~/.local/state/nvim/* ./backup/state
+  cp -r ~/.config/matugen/* ./backup/matugen
 }
 
 clone_nvchad() {
