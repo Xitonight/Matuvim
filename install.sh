@@ -93,7 +93,7 @@ clone_nvchad() {
   if [ -d ~/.local/state/nvim/ ]; then
     rm -rf ~/.local/state/nvim/
   fi
-  git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+  git clone https://github.com/NvChad/starter ~/.config/nvim
 }
 
 stow_dots() {
@@ -107,6 +107,7 @@ stow_dots() {
 # backup_old_files
 echo "Cloning NvChad, neovim will open shortly, do not touch anything..."
 clone_nvchad
+nvim
 echo "Stowing new dotfiles..."
 stow_dots
 nvim
