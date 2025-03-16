@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
 set -u
 set -o pipefail
 
@@ -69,10 +68,18 @@ backup_old_files() {
     mkdir -p $INSTALL_DIR/backup/nvim/{conf,share,state}
     mkdir -p $INSTALL_DIR/backup/matugen/
   fi
-  cp -r ~/.config/nvim/* $INSTALL_DIR/backup/conf &>/dev/null
-  cp -r ~/.local/share/nvim/* ./backup/share &>/dev/null
-  cp -r ~/.local/state/nvim/* ./backup/state &>/dev/null
-  cp -r ~/.config/matugen/* ./backup/matugen &>/dev/null 
+  if [ -d ~/.config/nvim && "$(ls -a ~/.config/nvim)" ]; then
+	cp -r ~/.config/nvim/* $INSTALL_DIR/backup/conf &>/dev/null
+  fi
+  if [ -d ~/.local/share/nvim && "$(ls -a ~/.local/share/nvim)" ]; then
+	cp -r ~/.local/share/nvim/* $INSTALL_DIR/backup/share &>/dev/null
+  fi
+  if [ -d ~/.local/state/nvim && "$(ls -a ~/.local/state/nvim)" ]; then
+	  cp -r ~/.local/state/nvim/* $INSTALL_DIR/backup/state &>/dev/null
+  fi
+  if [ -d ~/.config/matugen && "$(ls -a ~/.config/matugen)" ]; then
+	  cp -r ~/.config/matugen/* $INSTALL_DIR/backup/matugen &>/dev/null 
+  fi
 }
 
 clone_nvchad() {
