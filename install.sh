@@ -12,6 +12,7 @@ PACKAGES=(
   python-pywal
   python-watchdog
   stow
+  swww
 )
 
 install_aur_helper() {
@@ -85,7 +86,7 @@ stow_dots() {
     mkdir ~/.config/matugen/templates/
   fi
 
-  stow --target=$HOME/.config/matugen/templates matugen
+  stow --target=$HOME/.config/matugen/templates --dir=$INSTALL_DIR matugen
   stow --target=$HOME --dir=$INSTALL_DIR dots
 }
 

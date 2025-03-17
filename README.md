@@ -128,12 +128,13 @@ Now that everything's installed, every time you run `matugen image <path_to_your
 
 ## Uninstalling
 
-Run these 3 commands:
+Run these commands:
 
 ```bash
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim
+rm -rf ~/.config/matugen/templates/colors-pywal
 ```
 
 And uninstall the packages, that's it.
