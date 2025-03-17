@@ -83,7 +83,7 @@ stow_dots() {
     rm -rf ~/.config/nvim/
   fi
   if [ ! -d ~/.config/matugen/templates/ ]; then
-    mkdir ~/.config/matugen/templates/
+    mkdir -p ~/.config/matugen/templates/
   fi
 
   stow --target=$HOME/.config/matugen/templates --dir=$INSTALL_DIR matugen
