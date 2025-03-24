@@ -26,4 +26,12 @@ map("n", "<leader>e", function()
   vim.cmd "NvimTreeToggle"
 end, { desc = "toggle NvimTree" })
 
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map("v", "<C-c>", '"+y', { desc = "Yank into system clipboard" })
+
+map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save current open buffer" })
+
+map(
+  "n",
+  "<Leader>L",
+  '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/lua_snippets/"})<CR>'
+)
