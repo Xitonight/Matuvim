@@ -7,21 +7,31 @@ local M = {}
 
 M.base46 = {
   theme = "chadwal",
-
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+  transparency = true,
 }
 
 M.nvdash = { load_on_startup = true }
+
+M.mason = {
+  pkgs = {
+    "shellcheck",
+  },
+}
+
 M.ui = {
   tabufline = {
     lazyload = false,
   },
   cmp = {
-    style = "atom_colored"
-  }
+    lspkind_text = true,
+    style = "atom",
+  },
+  telescope = { style = "bordered" },
+  statusline = {
+    theme = "minimal",
+    separator_style = "round",
+    order = { "mode", "file", "diagnostics", "%=", "lsp_msg", "%=", "cwd" },
+  },
 }
 
 return M
