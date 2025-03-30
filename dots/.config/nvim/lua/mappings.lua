@@ -33,5 +33,5 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save current open buff
 map(
   "n",
   "<Leader>L",
-  '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/lua_snippets/"})<CR>'
+  '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets/"})<CR>'
 )

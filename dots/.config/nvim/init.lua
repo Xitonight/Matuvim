@@ -32,8 +32,8 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
-vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/lua_snippets"
--- vim.g.vscode_snippets_exclude = { "tex" }
+vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/luasnippets"
+vim.g.vscode_snippets_exclude = { "tex" }
 
 require("luasnip").config.set_config { -- Setting LuaSnip config
 
