@@ -30,7 +30,7 @@ return {
   s(
     { trig = "([^%a])jj", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
     fmta(
-      [[<>//
+      [[<>\\
 <>]],
       {
         f(function(_, snip)
@@ -86,7 +86,7 @@ return {
   ),
 
   s(
-    { trig = "shh", dscr = "Top-level section", snippetType = "autosnippet" },
+    { trig = "Hh", dscr = "Top-level section", snippetType = "autosnippet" },
     fmta([[\section*{<>}]], { i(1) }),
     { condition = line_begin }
   ),
@@ -98,7 +98,7 @@ return {
   ),
 
   s(
-    { trig = "ssh", dscr = "Top-level section", snippetType = "autosnippet" },
+    { trig = "Sh", dscr = "Top-level section", snippetType = "autosnippet" },
     fmta([[\subsection*{<>}]], { i(1) }),
     { condition = line_begin }
   ),
@@ -120,20 +120,20 @@ return {
     { condition = line_begin }
   ),
 
-  s(
-    { trig = "al", snippetType = "autosnippet" },
-    fmta(
-      [[
-      \begin{align*}
-          <>
-      \end{align*}
-    ]],
-      {
-        i(1),
-      }
-    ),
-    { condition = line_begin }
-  ),
+  -- s(
+  --   { trig = "al", snippetType = "autosnippet" },
+  --   fmta(
+  --     [[
+  --     \begin{align*}
+  --         <>
+  --     \end{align*}
+  --   ]],
+  --     {
+  --       i(1),
+  --     }
+  --   ),
+  --   { condition = line_begin }
+  -- ),
 
   s(
     { trig = "([%d%s%{%}%(%)%[%]])lss", snippetType = "autosnippet" },

@@ -2,6 +2,11 @@
     "diagnostics.globals": [
         "vim",
         "s",
-        "t"
+        "t",
+        "fmta",
+        "i",
+        "f",
+        "d",
+        "rep"
     ]
 }

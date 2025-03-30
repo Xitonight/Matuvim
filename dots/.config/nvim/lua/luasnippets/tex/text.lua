@@ -23,7 +23,7 @@ return {
   ),
 
   s(
-    { trig = ";norm", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    { trig = "([^%a])nf", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\normalfont{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
