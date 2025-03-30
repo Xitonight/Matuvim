@@ -5,6 +5,7 @@ local servers = {
   eslint = {},
   clangd = {},
   taplo = {},
+  bashls = {},
   pyright = {
     settings = {
       python = {
