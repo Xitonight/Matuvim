@@ -6,6 +6,8 @@ local servers = {
   clangd = {},
   taplo = {},
   bashls = {},
+  jsonls = {},
+  prismals = {},
   pyright = {
     settings = {
       python = {
@@ -39,4 +41,11 @@ lspconfig.ts_ls.setup {
 lspconfig.denols.setup {
   on_attach = nvlsp.on_attach,
   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+}
+
+vim.diagnostic.config {
+  virtual_text = true, -- Enables inline error messages
+  signs = true, -- Enables signs in the gutter
+  update_in_insert = false, -- Avoids updating while typing
+  float = { border = "rounded" }, -- Configures floating windows
 }
