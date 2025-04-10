@@ -94,7 +94,7 @@ stow_dots() {
   fi
 
   if [ -e "$MATUGEN_DIR"/config.toml ]; then
-    python3 ./adjustMatugenToml.py
+    python3 $INSTALL_DIR/adjustMatugenToml.py
   fi
 
   stow --target=$HOME/.config/matugen/templates --dir=$INSTALL_DIR matugen-template
