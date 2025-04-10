@@ -56,7 +56,7 @@ stow_dots() {
     mkdir -p "$MATUGEN_DIR"/templates
   fi
 
-  if [ ! -L $MATUGEN_DIR/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$INSTALL_DIR/matugen-template/colors-pywal" ]; then
+  if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$INSTALL_DIR/matugen-template/colors-pywal" ]; then
     backup="$MATUGEN_DIR"/templates/colors-pywal.bkp
     if [ ! -e "$backup" ]; then
       mv "$MATUGEN_DIR/templates/colors-pywal" "$backup"
@@ -66,11 +66,11 @@ stow_dots() {
   fi
 
   if [ -e "$MATUGEN_DIR"/config.toml ]; then
-    python3 ./adjustMatugenToml.py
+    python3 "$INSTALL_DIR"/adjustMatugenToml.py
   fi
 
-  stow --target=$HOME/.config/matugen/templates --dir=$INSTALL_DIR matugen-template
-  stow --target=$HOME --dir=$INSTALL_DIR dots
+  stow --target="$HOME"/.config/matugen/templates --dir="$INSTALL_DIR" matugen-template
+  stow --target="$HOME" --dir="$INSTALL_DIR" dots
 }
 
 clone_repo
