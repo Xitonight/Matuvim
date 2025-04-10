@@ -16,29 +16,29 @@ function M.in_beamer()
 end
 
 -- general env function
-local function env(name)
+function M.env(name)
   local is_inside = vim.fn["vimtex#env#is_inside"](name)
   return (is_inside[1] > 0 and is_inside[2] > 0)
 end
 
 function M.in_preamble()
-  return not env "document"
+  return not M.env "document"
 end
 
 function M.in_text()
-  return env "document" and not M.in_math()
+  return M.env "document" and not M.in_math()
 end
 
 function M.in_tikz()
-  return env "tikzpicture"
+  return M.env "tikzpicture"
 end
 
 function M.in_bullets()
-  return env "itemize" or env "enumerate"
+  return M.env "itemize" or M.env "enumerate"
 end
 
 function M.in_align()
-  return env "align" or env "align*" or env "aligned"
+  return M.env "align" or M.env "align*" or M.env "aligned"
 end
 
 return M

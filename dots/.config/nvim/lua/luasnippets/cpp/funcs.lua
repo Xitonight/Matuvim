@@ -1,8 +1,10 @@
-local line_begin = require("luasnip.extras.expand_conditions").line_begin
+local helpers = require "luasnippets.helper_functions"
+local autosnippet = helpers.autosnippet
+local line_begin = helpers.line_begin
 
 return {
-  s(
-    { trig = "([^%a])cin", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "([^%a])cin", regTrig = true, wordTrig = false },
     fmt("{}cin >> {};", {
       f(function(_, snip)
         return snip.captures[1]
@@ -10,8 +12,8 @@ return {
       i(1, "Your variable here"),
     })
   ),
-  s(
-    { trig = "([^%a])cout", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "([^%a])cout", regTrig = true, wordTrig = false },
     fmt("{}cout << {};", {
       f(function(_, snip)
         return snip.captures[1]
@@ -19,8 +21,8 @@ return {
       i(1, "Your text here"),
     })
   ),
-  s(
-    { trig = "func", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "func", regTrig = true, wordTrig = false },
     fmta(
       [[
         <><> <>(<>) {
@@ -40,8 +42,8 @@ return {
     ),
     { condition = line_begin }
   ),
-  s(
-    { trig = "([^%a])if", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "([^%a])if", regTrig = true, wordTrig = false },
     fmta(
       [[
         <>if (<>) {
@@ -59,8 +61,8 @@ return {
     ),
     { condition = line_begin }
   ),
-  s(
-    { trig = "([^%a]%s)elif", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "([^%a]%s)elif", regTrig = true, wordTrig = false },
     fmta(
       [[
         <>else if (<>) {
@@ -78,8 +80,8 @@ return {
     ),
     { condition = line_begin }
   ),
-  s(
-    { trig = "([^%a]%s)else", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "([^%a]%s)else", regTrig = true, wordTrig = false },
     fmta(
       [[
         <>else {
@@ -97,8 +99,8 @@ return {
     ),
     { condition = line_begin }
   ),
-  s(
-    { trig = "([^%a])for", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+  autosnippet(
+    { trig = "([^%a])for", regTrig = true, wordTrig = false },
     fmta(
       [[
         <>for (<>; <>; <>) {

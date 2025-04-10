@@ -5,6 +5,7 @@ local options = {
     html = { "prettier", "prettierd", stop_after_first = true },
     javascript = { "prettier", "prettierd", stop_after_first = true },
     typescript = { "prettier", "prettierd", stop_after_first = true },
+    typescriptreact = { "prettier", "prettierd", stop_after_first = true },
     json = { "prettier", "prettierd", stop_after_first = true },
     sh = { "shfmt" },
     python = { "black" },

@@ -1,11 +1,10 @@
-local helpers = require "luasnip-helper-funcs"
-local in_mathzone = helpers.in_mathzone
-local get_visual = helpers.get_visual
-local line_begin = helpers.line_begin
+local tex_conditions = require "luasnippets.tex.utils.conditions"
+local helpers = require "luasnippets.helper_functions"
+local autosnippet = helpers.autosnippet
 
 return {
 
-  s(
+  autosnippet(
     { trig = "([^%a])ff", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta([[<>\frac{<>}{<>}]], {
       f(function(_, snip)
@@ -14,20 +13,20 @@ return {
       i(1),
       i(2),
     }),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 
-  s(
+  autosnippet(
     { trig = "([^%a])mm", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
     fmta("<>$<>$", {
       f(function(_, snip)
         return snip.captures[1]
       end),
-      d(1, get_visual),
+      d(1, helpers.get_visual),
     })
   ),
 
-  s(
+  autosnippet(
     { trig = "([^%a])jj", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
     fmta(
       [[<>\\
@@ -36,12 +35,12 @@ return {
         f(function(_, snip)
           return snip.captures[1]
         end),
-        d(1, get_visual),
+        d(1, helpers.get_visual),
       }
     )
   ),
 
-  s(
+  autosnippet(
     { trig = "([^%a])pmat", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta(
       [[
@@ -55,21 +54,21 @@ return {
         i(1),
       }
     ),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 
-  s(
+  autosnippet(
     { trig = "([^%a])ee", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta("<>e^{<>}", {
       f(function(_, snip)
         return snip.captures[1]
       end),
-      d(1, get_visual),
+      d(1, helpers.get_visual),
     }),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 
-  s(
+  autosnippet(
     { trig = "([%a%)%]%}])00", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta("<>_{<>}", {
       f(function(_, snip)
@@ -79,31 +78,31 @@ return {
     })
   ),
 
-  s(
+  autosnippet(
     { trig = "hh", dscr = "Top-level section", snippetType = "autosnippet" },
     fmta([[\section{<>}]], { i(1) }),
-    { condition = line_begin }
+    { condition = helpers.line_begin }
   ),
 
-  s(
+  autosnippet(
     { trig = "Hh", dscr = "Top-level section", snippetType = "autosnippet" },
     fmta([[\section*{<>}]], { i(1) }),
-    { condition = line_begin }
+    { condition = helpers.line_begin }
   ),
 
-  s(
+  autosnippet(
     { trig = "sh", dscr = "Top-level section", snippetType = "autosnippet" },
     fmta([[\subsection{<>}]], { i(1) }),
-    { condition = line_begin }
+    { condition = helpers.line_begin }
   ),
 
-  s(
+  autosnippet(
     { trig = "Sh", dscr = "Top-level section", snippetType = "autosnippet" },
     fmta([[\subsection*{<>}]], { i(1) }),
-    { condition = line_begin }
+    { condition = helpers.line_begin }
   ),
 
-  s(
+  autosnippet(
     { trig = "new", snippetType = "autosnippet" },
     fmta(
       [[
@@ -117,25 +116,10 @@ return {
         rep(1),
       }
     ),
-    { condition = line_begin }
+    { condition = helpers.line_begin }
   ),
 
-  -- s(
-  --   { trig = "al", snippetType = "autosnippet" },
-  --   fmta(
-  --     [[
-  --     \begin{align*}
-  --         <>
-  --     \end{align*}
-  --   ]],
-  --     {
-  --       i(1),
-  --     }
-  --   ),
-  --   { condition = line_begin }
-  -- ),
-
-  s(
+  autosnippet(
     { trig = "([%d%s%{%}%(%)%[%]])lss", snippetType = "autosnippet" },
     fmta([[<>{}_{<>}]], {
       f(function(_, snip)
@@ -143,10 +127,10 @@ return {
       end),
       i(1),
     }),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 
-  s(
+  autosnippet(
     { trig = "([%d%s%{%}%(%)%[%]])ss", snippetType = "autosnippet" },
     fmta([[<>_{<>}]], {
       f(function(_, snip)
@@ -154,10 +138,10 @@ return {
       end),
       i(1),
     }),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 
-  s(
+  autosnippet(
     { trig = "([%d%s%{%}%[%]%(%)])lSs", snippetType = "autosnippet" },
     fmta([[<>{}^{<>}]], {
       f(function(_, snip)
@@ -165,10 +149,10 @@ return {
       end),
       i(1),
     }),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 
-  s(
+  autosnippet(
     { trig = "([%d%s%{%}%(%)%[%]])Ss", snippetType = "autosnippet" },
     fmta([[<>^{<>}]], {
       f(function(_, snip)
@@ -176,6 +160,6 @@ return {
       end),
       i(1),
     }),
-    { condition = in_mathzone }
+    { condition = tex_conditions.in_mathzone }
   ),
 }

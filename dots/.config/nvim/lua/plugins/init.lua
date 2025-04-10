@@ -53,6 +53,7 @@ return {
         "markdown_inline",
         "javascript",
         "typescript",
+        "tsx",
         "hyprlang",
         "json",
         "toml",
@@ -96,5 +97,12 @@ return {
       vim.g.vimtex_quickfix_open_on_warning = false
       vim.g.vimtex_view_forward_search_on_start = false
     end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    lazy = false,
+    event = { "BufWritePre", "BufNewFile" },
+    opts = {},
   },
 }

@@ -2,12 +2,17 @@ local servers = {
   lua_ls = {},
   html = {},
   cssls = {},
-  eslint = {},
+  eslint = {
+    settings = {
+      format = false,
+    },
+  },
   clangd = {},
   taplo = {},
   bashls = {},
   jsonls = {},
   prismals = {},
+  tailwindcss = {},
   pyright = {
     settings = {
       python = {
