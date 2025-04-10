@@ -33,7 +33,7 @@ require "options"
 require "nvchad.autocmds"
 
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/luasnippets"
-vim.g.vscode_snippets_exclude = { "tex" }
+vim.g.vscode_snippets_exclude = { "tex", "typescriptreact" }
 
 require("luasnip").config.set_config { -- Setting LuaSnip config
 

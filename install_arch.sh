@@ -8,6 +8,34 @@ INSTALL_DIR=${1:-"$HOME/neoconf"}
 MATUGEN_DIR="$HOME/.config/matugen"
 REPO_URL="https://github.com/Xitonight/neoconf"
 
+install_aur_helper() {
+  if ! command -v git &>/dev/null; then
+    sudo pacman -Sy git
+  fi
+  aur_helper=""
+  if command -v yay &>/dev/null; then
+    aur_helper="yay"
+    echo $aur_helper
+  elif command -v paru &>/dev/null; then
+    aur_helper="paru"
+    echo $aur_helper
+  else
+    echo "Installing yay-bin..."
+    tmpdir=$(mktemp -d)
+    git clone https://aur.archlinux.org/yay-bin.git "$tmpdir/yay-bin"
+    cd "$tmpdir/yay-bin"
+    makepkg -si --noconfirm
+    cd - >/dev/null
+    rm -rf "$tmpdir"
+    aur_helper="yay"
+  fi
+}
+
+install_packages() {
+  echo "Installing required packages..."
+  grep -v '^$' "$INSTALL_DIR"/requirements.lst | sed '/^#/d' | $aur_helper -Syy --noconfirm --needed -
+}
+
 clone_repo() {
   if [ -d "$INSTALL_DIR" ]; then
     echo "Updating neoconf..."
@@ -70,7 +98,16 @@ stow_dots() {
   stow --target=$HOME/.config/matugen/templates --dir=$INSTALL_DIR matugen-template
 }
 
+install_npm() {
+  source /usr/share/nvm/init-nvm.sh
+  nvm install node
+  nvm use node
+}
+
 clone_repo
+install_aur_helper
+install_packages
+install_npm
 clone_nvchad
 nvim
 stow_dots
