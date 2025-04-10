@@ -51,23 +51,26 @@ stow_dots() {
   if [ -d ~/.config/nvim ]; then
     rm -rf ~/.config/nvim
   fi
+
   if [ ! -d "$MATUGEN_DIR" ]; then
     mkdir -p "$MATUGEN_DIR"/templates
   fi
-  if [ -e "$MATUGEN_DIR"/templates/colors-pywal ]; then
-    if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$INSTALL_DIR/matugen-template/colors-pywal" ]; then
-      backup="$MATUGEN_DIR"/templates/colors-pywal.bkp
-      if [ ! -e "$backup" ]; then
-        mv "$MATUGEN_DIR/templates/colors-pywal" "$backup"
-      fi
+
+  if [ ! -L $MATUGEN_DIR/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$INSTALL_DIR/matugen-template/colors-pywal" ]; then
+    backup="$MATUGEN_DIR"/templates/colors-pywal.bkp
+    if [ ! -e "$backup" ]; then
+      mv "$MATUGEN_DIR/templates/colors-pywal" "$backup"
+    else
+      rm -rf "$MATUGEN_DIR/templates/colors-pywal"
     fi
   fi
+
   if [ -e "$MATUGEN_DIR"/config.toml ]; then
     python3 ./adjustMatugenToml.py
   fi
 
-  stow --target=$HOME --dir=$INSTALL_DIR dots
   stow --target=$HOME/.config/matugen/templates --dir=$INSTALL_DIR matugen-template
+  stow --target=$HOME --dir=$INSTALL_DIR dots
 }
 
 clone_repo
