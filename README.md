@@ -44,11 +44,13 @@ The objective of this is to ship a bundled config with lots of languages availab
 
 <h3><img src="http://wiki.installgentoo.com/images/f/f9/Arch-linux-logo.png" width=22 height=22/> On Arch Linux</h3>
 
-On Arch Linux you'll only need to run the installation script, as it'll do everything for you. It'll backup the files automatically to `<path/to/the/file>.bkp` and it will automatically install all the required packages.
+On Arch Linux you'll only need to run the installation script, as it'll do (almost) everything for you. It'll backup the files automatically to `<path/to/the/file>.bkp` and it will automatically install all the required packages.
 
 ```bash
 curl -fsSLO https://raw.githubusercontent.com/Xitonight/neoconf/main/install_arch.sh && chmod +x ./install_arch.sh && ./install_arch.sh
 ```
+
+When Neovim opens for the second time run `:MasonInstallAll` to install all LSPs, formatters and linters.
 
 <h3><img src="http://wiki.installgentoo.com/images/5/5b/Ubuntu.png" width=22 height=22/> On other distros</h3>
 
@@ -68,6 +70,8 @@ Once every package has been installed, run the script:
 ```bash
 curl -fsSLO https://raw.githubusercontent.com/Xitonight/neoconf/main/install.sh && chmod +x ./install.sh && ./install.sh
 ```
+
+When Neovim opens for the second time run `:MasonInstallAll` to install all LSPs, formatters and linters.
 
 <h2><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Information.png" alt="Information" width="25" height="25" /> Usage</h2>
 
