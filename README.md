@@ -2,6 +2,22 @@
 
 This is nothing but a really simple Neovim setup based on [NvChad](https://nvchad.com/) and [NvChad's pywal](https://github.com/NvChad/pywal) by [Axenide](https://github.com/Axenide) with some tweaks.
 
+The objective of this is to ship a bundled config with lots of languages available out of the box with LSPs, formatters, custom snippets (since i don't like the ones provided by NvChad's default config) and other really useful plugins i find to be indispensable, such as [nvim-surround](https://github.com/kylechui/nvim-surround), which is not available on NvChad's default config.
+
+**Implemented languages:**
+- Bash
+- CSS
+- C++
+- HTML
+- JSON
+- Lua
+- Python
+- Prisma scheme files
+- Svelte
+- Tailwindcss (classes)
+- Typescript / Javascript
+- Toml
+
 <h2><sub><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Camera%20with%20Flash.png" alt="Camera with Flash" width="25" height="25" /></sub> Screenshots</h2>
 
 <table align="center">
