@@ -23,24 +23,21 @@ clone_nvchad() {
 
   if [ -d ~/.config/nvim/ ]; then
     if [ ! -e ~/.config/nvim.bkp ]; then
-      mv ~/.config/nvim/ ~/.config/nvim.bkp
-    else
-      rm -rf ~/.config/nvim
+      cp -R ~/.config/nvim/ ~/.config/nvim.bkp
     fi
+    rm -rf ~/.config/nvim
   fi
   if [ -d ~/.local/share/nvim/ ]; then
     if [ ! -e ~/.local/share/nvim.bkp ]; then
-      mv ~/.local/share/nvim/ ~/.local/share/nvim.bkp
-    else
-      rm -rf ~/.local/share/nvim
+      cp -R ~/.local/share/nvim/ ~/.local/share/nvim.bkp
     fi
+    rm -rf ~/.local/share/nvim
   fi
   if [ -d ~/.local/state/nvim/ ]; then
     if [ -e ~/.local/state/nvim.bkp ]; then
-      mv ~/.local/state/nvim/ ~/.local/state/nvim.bkp
-    else
-      rm -rf ~/.local/state/nvim
+      cp -R ~/.local/state/nvim/ ~/.local/state/nvim.bkp
     fi
+    rm -rf ~/.local/state/nvim
   fi
   git clone https://github.com/NvChad/starter ~/.config/nvim
 }
@@ -59,10 +56,9 @@ stow_dots() {
   if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$INSTALL_DIR/matugen-template/colors-pywal" ]; then
     backup="$MATUGEN_DIR"/templates/colors-pywal.bkp
     if [ ! -e "$backup" ]; then
-      mv "$MATUGEN_DIR/templates/colors-pywal" "$backup"
-    else
-      rm -rf "$MATUGEN_DIR/templates/colors-pywal"
+      cp "$MATUGEN_DIR/templates/colors-pywal" "$backup"
     fi
+    rm -rf "$MATUGEN_DIR/templates/colors-pywal"
   fi
 
   if [ -e "$MATUGEN_DIR"/config.toml ]; then

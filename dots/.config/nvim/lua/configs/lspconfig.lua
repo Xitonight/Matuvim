@@ -1,18 +1,16 @@
 local servers = {
-  lua_ls = {},
-  html = {},
+  bashls = {},
+  clangd = {},
   cssls = {},
   eslint = {
     settings = {
       format = false,
     },
   },
-  clangd = {},
-  taplo = {},
-  bashls = {},
+  html = {},
   jsonls = {},
+  lua_ls = {},
   prismals = {},
-  tailwindcss = {},
   pyright = {
     settings = {
       python = {
@@ -24,6 +22,9 @@ local servers = {
       },
     },
   },
+  svelte = {},
+  taplo = {},
+  tailwindcss = {},
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"

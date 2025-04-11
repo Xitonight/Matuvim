@@ -59,14 +59,6 @@ autocmd("Signal", {
   end,
 })
 
-autocmd("VimEnter", {
-  command = ":silent !kitty @ set-spacing padding=0 margin=0",
-})
-
-autocmd("VimLeavePre", {
-  command = ":silent !kitty @ set-spacing padding=20 margin=10",
-})
-
 autocmd("BufReadPost", {
   pattern = "*",
   callback = function()
