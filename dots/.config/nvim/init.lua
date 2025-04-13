@@ -59,6 +59,14 @@ autocmd("Signal", {
   end,
 })
 
+autocmd("VimEnter", {
+  command = ":silent !tmux set status off",
+})
+
+autocmd("VimLeavePre", {
+  command = ":silent !tmux set status on",
+})
+
 autocmd("BufReadPost", {
   pattern = "*",
   callback = function()
