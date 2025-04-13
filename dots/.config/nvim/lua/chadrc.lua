@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "chadwal",
-  transparency = true,
+  theme = "onedark",
+  transparency = false,
 }
 
 M.nvdash = { load_on_startup = true }
@@ -20,16 +20,17 @@ M.mason = {
 
 M.ui = {
   tabufline = {
+    order = { "buffers", "tabs", "btns" },
     lazyload = false,
   },
   cmp = {
     lspkind_text = true,
-    style = "atom",
+    style = "atom_colored",
   },
   telescope = { style = "bordered" },
   statusline = {
-    theme = "minimal",
-    separator_style = "round",
+    theme = "default",
+    separator_style = "default",
     order = { "mode", "file", "diagnostics", "%=", "lsp_msg", "%=", "cwd" },
   },
 }
