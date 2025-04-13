@@ -5,6 +5,14 @@ return {
       require "configs.cmp"
     end,
   },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = function()
+      return require "configs.nvimtree"
+    end,
+  },
+
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
@@ -15,13 +23,6 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
-    end,
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      require "configs.telescope"
     end,
   },
 
