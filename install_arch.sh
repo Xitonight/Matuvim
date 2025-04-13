@@ -4,9 +4,13 @@ set -e
 set -u
 set -o pipefail
 
-INSTALL_DIR=${1:-"$HOME/neoconf"}
+MATUVIM_DIR=${1:-"$HOME/.matuvim"}
+if ! grep -q "export MATUVIM_DIR" ~/.zshrc; then
+  echo "export MATUVIM_DIR=\"$MATUVIM_DIR\"" >>~/.zshrc
+fi
+
 MATUGEN_DIR="$HOME/.config/matugen"
-REPO_URL="https://github.com/Xitonight/neoconf"
+REPO_URL="https://github.com/Xitonight/Matuvim"
 
 install_aur_helper() {
   if ! command -v git &>/dev/null; then
@@ -33,16 +37,16 @@ install_aur_helper() {
 
 install_packages() {
   echo "Installing required packages..."
-  grep -v '^$' "$INSTALL_DIR"/requirements.lst | sed '/^#/d' | $aur_helper -Syy --noconfirm --needed -
+  grep -v '^$' "$MATUVIM_DIR"/requirements.lst | sed '/^#/d' | $aur_helper -Syy --noconfirm --needed -
 }
 
 clone_repo() {
-  if [ -d "$INSTALL_DIR" ]; then
-    echo "Updating neoconf..."
-    git -C "$INSTALL_DIR" pull
+  if [ -d "$MATUVIM_DIR" ]; then
+    echo "Updating Matuvim..."
+    git -C "$MATUVIM_DIR" pull
   else
-    echo "Cloning neoconf..."
-    git clone "$REPO_URL" "$INSTALL_DIR"
+    echo "Cloning Matuvim..."
+    git clone "$REPO_URL" "$MATUVIM_DIR"
   fi
 }
 
@@ -50,20 +54,20 @@ clone_nvchad() {
   echo "Cloning NvChad, neovim will open shortly, do not touch anything..."
 
   if [ -d ~/.config/nvim/ ]; then
-    if [ ! -e ~/.config/nvim.bkp ]; then
-      cp -R ~/.config/nvim/ ~/.config/nvim.bkp/
+    if [ ! -e ~/.config/nvim.bak ]; then
+      cp -R ~/.config/nvim/ ~/.config/nvim.bak/
     fi
     rm -rf ~/.config/nvim
   fi
   if [ -d ~/.local/share/nvim/ ]; then
-    if [ ! -e ~/.local/share/nvim.bkp ]; then
-      cp -R ~/.local/share/nvim/ ~/.local/share/nvim.bkp
+    if [ ! -e ~/.local/share/nvim.bak ]; then
+      cp -R ~/.local/share/nvim/ ~/.local/share/nvim.bak
     fi
     rm -rf ~/.local/share/nvim
   fi
   if [ -d ~/.local/state/nvim/ ]; then
-    if [ -e ~/.local/state/nvim.bkp ]; then
-      cp -R ~/.local/state/nvim/ ~/.local/state/nvim.bkp
+    if [ -e ~/.local/state/nvim.bak ]; then
+      cp -R ~/.local/state/nvim/ ~/.local/state/nvim.bak
     fi
     rm -rf ~/.local/state/nvim
   fi
@@ -81,8 +85,8 @@ stow_dots() {
     mkdir -p "$MATUGEN_DIR"/templates
   fi
 
-  if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$INSTALL_DIR/matugen-template/colors-pywal" ]; then
-    backup="$MATUGEN_DIR"/templates/colors-pywal.bkp
+  if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$MATUVIM_DIR/matugen-template/colors-pywal" ]; then
+    backup="$MATUGEN_DIR"/templates/colors-pywal.bak
     if [ ! -e "$backup" ]; then
       cp "$MATUGEN_DIR/templates/colors-pywal" "$backup"
     fi
@@ -90,17 +94,36 @@ stow_dots() {
   fi
 
   if [ -e "$MATUGEN_DIR"/config.toml ]; then
-    python3 "$INSTALL_DIR"/adjustMatugenToml.py
+    python3 "$MATUVIM_DIR"/adjustMatugenToml.py
   fi
 
-  stow --target="$HOME"/.config/matugen/templates --dir="$INSTALL_DIR" matugen-template
-  stow --target="$HOME" --dir="$INSTALL_DIR" dots
+  stow --target="$HOME"/.config/matugen/templates --dir="$MATUVIM_DIR" matugen-template
+  stow --target="$HOME" --dir="$MATUVIM_DIR" dots
 }
 
 install_npm() {
   source /usr/share/nvm/init-nvm.sh
   nvm install node
   nvm use node
+}
+
+setup_tmux() {
+  file="$HOME/.config/tmux/tmux.conf"
+
+  line1="set-hook after-select-window 'run-shell \"~/.config/nvim/tmux.sh\"'"
+  line2="set-hook after-select-pane 'run-shell \"~/.config/nvim/tmux.sh\"'"
+
+  line_exists() {
+    grep -Fxq "$1" "$file"
+  }
+
+  if ! line_exists "$line1"; then
+    echo "$line1" >>"$file"
+  fi
+
+  if ! line_exists "$line2"; then
+    echo "$line2" >>"$file"
+  fi
 }
 
 clone_repo
@@ -110,4 +133,5 @@ install_npm
 clone_nvchad
 nvim
 stow_dots
+setup_tmux
 nvim
