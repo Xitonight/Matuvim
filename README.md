@@ -11,6 +11,7 @@ The objective of this is to ship a bundled config with lots of languages availab
 - HTML
 - JSON
 - Lua
+- LaTeX ([requirements](https://github.com/lervag/vimtex?tab=readme-ov-file#requirements) )
 - Python
 - Prisma scheme files
 - Svelte
