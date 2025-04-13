@@ -1,4 +1,4 @@
-<h1><img src="https://logosrated.net/wp-content/uploads/parser/Neovim-Logo-1.png" alt="Neovim logo" width="25" height="25"/> Neoconf</h1>
+<h1><img src="https://logosrated.net/wp-content/uploads/parser/Neovim-Logo-1.png" alt="Neovim logo" width="25" height="25"/> Matuvim</h1>
 
 This is nothing but a really simple Neovim setup based on [NvChad](https://nvchad.com/) and [NvChad's pywal](https://github.com/NvChad/pywal) by [Axenide](https://github.com/Axenide) with some tweaks.
 
@@ -40,17 +40,19 @@ The objective of this is to ship a bundled config with lots of languages availab
 > Both the scripts will use stow, so they won't copy the files to your ~/.config folder, they will only create symlinks to the files inside the cloned repo, so make sure not to delete it after the installation (unless you want to manually copy the files).
 
 > [!TIP]
-> You can pass `/path/to/installation` to the script to change the default install directory (`~/neoconf`)
+> You can pass `/path/to/installation` to the script to change the default install directory (`~/.matuvim`)
 
 <h3><img src="http://wiki.installgentoo.com/images/f/f9/Arch-linux-logo.png" width=22 height=22/> On Arch Linux</h3>
 
 On Arch Linux you'll only need to run the installation script, as it'll do (almost) everything for you. It'll backup the files automatically to `<path/to/the/file>.bkp` and it will automatically install all the required packages.
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/Xitonight/neoconf/main/install_arch.sh && chmod +x ./install_arch.sh && ./install_arch.sh
+curl -fsSLO https://raw.githubusercontent.com/Xitonight/Matuvim/main/install_arch.sh && chmod +x ./install_arch.sh && ./install_arch.sh
 ```
 
 When Neovim opens for the second time run `:MasonInstallAll` to install all LSPs, formatters and linters.
+
+After the installation, you can delete the `install_arch.sh` script since you'll already find it in the install directory.
 
 <h3><img src="http://wiki.installgentoo.com/images/5/5b/Ubuntu.png" width=22 height=22/> On other distros</h3>
 
@@ -68,10 +70,12 @@ All the packages should be available on your Linux package manager, so install t
 Once every package has been installed, run the script:
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/Xitonight/neoconf/main/install.sh && chmod +x ./install.sh && ./install.sh
+curl -fsSLO https://raw.githubusercontent.com/Xitonight/Matuvim/main/install.sh && chmod +x ./install.sh && ./install.sh
 ```
 
 When Neovim opens for the second time run `:MasonInstallAll` to install all LSPs, formatters and linters.
+
+After the installation, you can delete the `install.sh` script since you'll already find it in the install directory.
 
 <h2><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Information.png" alt="Information" width="25" height="25" /> Usage</h2>
 
