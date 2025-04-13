@@ -1,5 +1,4 @@
 local cmp = require "cmp"
-local defaults = require "nvchad.configs.cmp"
 
 local custom_settings = {
   filetype = {
@@ -13,6 +12,6 @@ local custom_settings = {
   },
 }
 
-local final_config = vim.tbl_deep_extend("force", defaults, custom_settings)
+local final_config = vim.tbl_deep_extend("force", custom_settings, require "nvchad.configs.cmp")
 
-cmp.setup(final_config)
+return final_config
