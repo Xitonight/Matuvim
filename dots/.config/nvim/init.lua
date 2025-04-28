@@ -32,21 +32,17 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
-vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/luasnippets"
-vim.g.vscode_snippets_exclude = { "tex", "typescriptreact" }
-
-require("luasnip").config.set_config { -- Setting LuaSnip config
-
-  -- Enable autotriggered snippets
-  enable_autosnippets = true,
-
-  -- Use Tab (or some other key if you prefer) to trigger visual selection
-  store_selection_keys = "<Tab>",
-}
-
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/luasnippets"
+vim.g.vscode_snippets_exclude = { "tex", "typescriptreact" }
+
+require("luasnip").config.set_config {
+  enable_autosnippets = true,
+  store_selection_keys = "<Tab>",
+}
 
 os.execute "python ~/.config/nvim/pywal/chadwal.py &> /dev/null &"
 
@@ -60,11 +56,11 @@ autocmd("Signal", {
 })
 
 autocmd("VimEnter", {
-  command = ":silent !tmux set status off",
+  command = ":silent !~/.config/nvim/tmux.sh",
 })
 
-autocmd("VimLeavePre", {
-  command = ":silent !tmux set status on",
+autocmd("VimLeave", {
+  command = ":silent !~/.config/nvim/tmux.sh",
 })
 
 autocmd("BufReadPost", {
