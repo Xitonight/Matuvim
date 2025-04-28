@@ -1,7 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -25,6 +23,30 @@ end, { desc = "window up" })
 map("n", "<leader>e", function()
   vim.cmd "NvimTreeToggle"
 end, { desc = "toggle NvimTree" })
+
+map("n", "<leader>ru", function()
+  local filetype = vim.bo.filetype
+  if filetype == "typescript" or filetype == "typescriptreact" then
+    vim.lsp.buf.code_action {
+      apply = true,
+      context = {
+        only = { "source.removeUnused.ts" },
+        diagnostics = {},
+      },
+    }
+  else
+    vim.notify("This command is only available for TypeScript files.", vim.log.levels.WARN)
+  end
+end, { desc = "Remove Unused Imports (TypeScript)" })
+
+map("n", "<leader>ca", function()
+  vim.lsp.buf.code_action {
+    apply = false,
+    context = {
+      diagnostics = {},
+    },
+  }
+end, { desc = "Open Code Action Menu" })
 
 map("v", "<C-c>", '"+y', { desc = "Yank into system clipboard" })
 
