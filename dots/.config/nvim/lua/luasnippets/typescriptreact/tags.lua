@@ -39,7 +39,7 @@ return {
   ),
 
   autosnippet(
-    { trig = "(a)", regTrig = true, wordTrig = false },
+    { trig = "a", regTrig = true, wordTrig = false },
     fmt(
       [[
 <a
