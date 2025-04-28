@@ -76,8 +76,8 @@ stow_dots() {
 setup_tmux() {
   file="$HOME/.config/tmux/tmux.conf"
 
-  line1="set-hook after-select-window 'run-shell \"~/.config/nvim/tmux.sh\"'"
-  line2="set-hook after-select-pane 'run-shell \"~/.config/nvim/tmux.sh\"'"
+  line1="set-hook -g after-select-window 'run-shell \"~/.config/nvim/tmux.sh\"'"
+  line2="set-hook -g after-select-pane 'run-shell \"~/.config/nvim/tmux.sh\"'"
 
   line_exists() {
     grep -Fxq "$1" "$file"
