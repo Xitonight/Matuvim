@@ -1,3 +1,8 @@
+local nvlsp = require "nvchad.configs.lspconfig"
+local lspconfig = require "lspconfig"
+
+nvlsp.defaults()
+
 local servers = {
   bashls = {},
   clangd = {},
@@ -27,15 +32,9 @@ local servers = {
   tailwindcss = {},
 }
 
-local nvlsp = require "nvchad.configs.lspconfig"
-local lspconfig = require "lspconfig"
-
 for name, opts in pairs(servers) do
-  opts.on_attach = nvlsp.on_attach
-  opts.on_init = nvlsp.on_init
-  opts.capabilities = nvlsp.capabilities
-
-  lspconfig[name].setup(opts)
+  vim.lsp.enable(name)
+  vim.lsp.config(name, opts)
 end
 
 lspconfig.ts_ls.setup {
@@ -47,11 +46,4 @@ lspconfig.ts_ls.setup {
 lspconfig.denols.setup {
   on_attach = nvlsp.on_attach,
   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-}
-
-vim.diagnostic.config {
-  virtual_text = true,
-  signs = true,
-  update_in_insert = false,
-  float = { border = "rounded" },
 }
