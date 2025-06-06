@@ -55,14 +55,6 @@ autocmd("Signal", {
   end,
 })
 
-autocmd("VimEnter", {
-  command = ":silent !~/.config/nvim/tmux.sh",
-})
-
-autocmd("VimLeave", {
-  command = ":silent !~/.config/nvim/tmux.sh",
-})
-
 autocmd("BufReadPost", {
   pattern = "*",
   callback = function()
