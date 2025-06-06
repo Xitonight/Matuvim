@@ -1,6 +1,7 @@
 local tex_conditions = require "luasnippets.tex.utils.conditions"
 local helpers = require "luasnippets.helper_functions"
 local autosnippet = helpers.autosnippet
+local get_visual = helpers.get_visual
 
 return {
   autosnippet(
@@ -9,7 +10,7 @@ return {
       [[
     $<>$<>
     ]],
-      { i(1), i(0) }
+      { d(1, get_visual), i(0) }
     )
   ),
 
@@ -21,7 +22,7 @@ return {
     <>
     \]
     <>]],
-      { i(1), i(0) }
+      { d(1, get_visual), i(0) }
     ),
     { condition = helpers.line_begin, show_condition = helpers.line_begin }
   ),
@@ -69,23 +70,10 @@ return {
       [[
     \begin{equation<>}
     <>
-    .\end{equation<>}
+    \end{equation<>}
     ]],
       { c(1, { t "*", t "" }), i(2), rep(1) }
     ),
     { condition = helpers.line_begin, show_condition = helpers.line_begin }
-  ),
-
-  autosnippet(
-    { trig = "(%d?)cases", name = "cases", dscr = "cases", regTrig = true, hidden = true },
-    fmta(
-      [[<>
-    \begin{cases}
-    <>
-    \end{cases}
-    ]],
-      { i(1) }
-    ),
-    { condition = tex_conditions.in_math, show_condition = tex_conditions.in_math }
   ),
 }

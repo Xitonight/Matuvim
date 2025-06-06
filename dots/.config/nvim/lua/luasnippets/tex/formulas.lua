@@ -35,7 +35,7 @@ return {
         f(function(_, snip)
           return snip.captures[1]
         end),
-        d(1, helpers.get_visual),
+        i(1),
       }
     )
   ),
