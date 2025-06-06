@@ -5,8 +5,10 @@ nvlsp.defaults()
 
 local servers = {
   bashls = {},
+  cmake = {},
   clangd = {},
   cssls = {},
+  -- denols = {}, -- Disabled as conflicts with ts_ls and can't fix it since neovim 0.11
   eslint = {
     settings = {
       format = false,
@@ -18,32 +20,33 @@ local servers = {
   prismals = {},
   pyright = {
     settings = {
-      python = {
-        analysis = {
-          autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
-          diagnosticMode = "workspace",
-        },
+      pyright = {
+        disableOrganizeImports = true,
       },
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true,
+      },
+    },
+    root_markers = {
+      "main.py",
+      "pyproject.toml",
+      "setup.py",
+      "setup.cfg",
+      "requirements.txt",
+      "Pipfile",
+      "pyrightconfig.json",
+      ".git",
     },
   },
   svelte = {},
   taplo = {},
   tailwindcss = {},
+  ts_ls = {},
 }
 
 for name, opts in pairs(servers) do
   vim.lsp.enable(name)
   vim.lsp.config(name, opts)
 end
-
-lspconfig.ts_ls.setup {
-  on_attach = nvlsp.on_attach,
-  root_dir = lspconfig.util.root_pattern "package.json",
-  single_file_support = false,
-}
-
-lspconfig.denols.setup {
-  on_attach = nvlsp.on_attach,
-  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-}
