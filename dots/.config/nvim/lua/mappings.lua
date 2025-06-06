@@ -48,6 +48,33 @@ map("n", "<leader>ca", function()
   }
 end, { desc = "Open Code Action Menu" })
 
+local telescope = require "telescope.builtin"
+
+map("n", "<leader>fw", function()
+  telescope.live_grep {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden", -- Include hidden files
+      "--glob=!.git/", -- Exclude .git directory
+    },
+  }
+end, { desc = "telescope live grep" })
+
+map(
+  "n",
+  "<leader>ff",
+  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+  { desc = "telescope find files" }
+)
+
+map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "telescope find references" })
+
 map("v", "<C-c>", '"+y', { desc = "Yank into system clipboard" })
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save current open buffer" })
