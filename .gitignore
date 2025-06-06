@@ -1,6 +1,7 @@
 # Useless stuff
 dots/.config/nvim/lazy-lock.json
 dots/.config/nvim/.luarc.json
+dots/.config/nvim/pack
 
 # Tests
 test

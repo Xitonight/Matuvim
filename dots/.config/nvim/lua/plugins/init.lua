@@ -1,9 +1,16 @@
 return {
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = function()
+  --     require "configs.cmp"
+  --   end,
+  -- },
+
+  { import = "nvchad.blink.lazyspec" },
+
   {
-    "hrsh7th/nvim-cmp",
-    opts = function()
-      require "configs.cmp"
-    end,
+    "github/copilot.vim",
+    lazy = false,
   },
 
   {
