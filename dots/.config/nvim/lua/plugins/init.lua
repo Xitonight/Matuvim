@@ -1,15 +1,13 @@
 return {
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = function()
-  --     require "configs.cmp"
-  --   end,
-  -- },
-
-  { import = "nvchad.blink.lazyspec" },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      require "configs.cmp"
+    end,
+  },
 
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
     lazy = false,
   },
 
@@ -44,6 +42,20 @@ return {
     config = function()
       require("nvim-surround").setup {}
     end,
+  },
+
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    config = function()
+      require("ufo").setup()
+    end,
+  },
+
+  {
+    "karb94/neoscroll.nvim",
+    lazy = false,
+    opts = {},
   },
 
   {

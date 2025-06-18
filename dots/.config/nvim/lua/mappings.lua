@@ -84,3 +84,6 @@ map(
   "<Leader>L",
   '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets"})<CR>'
 )
+
+map("n", "zR", require("ufo").openAllFolds)
+map("n", "zM", require("ufo").closeAllFolds)
