@@ -1,5 +1,5 @@
-local tex_conditions = require "luasnippets.tex.utils.conditions"
-local helpers = require "luasnippets.helper_functions"
+local tex_conditions = require "snippets.tex.utils.conditions"
+local helpers = require "snippets.helper_functions"
 local autosnippet = helpers.autosnippet
 
 return {

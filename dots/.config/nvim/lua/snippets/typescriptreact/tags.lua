@@ -1,4 +1,4 @@
-local helpers = require "luasnippets.helper_functions"
+local helpers = require "snippets.helper_functions"
 local autosnippet = helpers.autosnippet
 
 return {
