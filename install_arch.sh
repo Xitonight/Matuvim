@@ -86,12 +86,14 @@ stow_dots() {
     mkdir -p "$MATUGEN_DIR"/templates
   fi
 
-  if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$MATUVIM_DIR/matugen-template/colors-pywal" ]; then
-    backup="$BACKUP_DIR"/templates/colors-pywal.bak
-    if [ ! -e "$backup" ]; then
-      cp "$MATUGEN_DIR/templates/colors-pywal" "$backup"
+  if [ -e "$MATUGEN_DIR"/templates/colors-pywal ]; then
+    if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$MATUVIM_DIR/matugen-template/colors-pywal" ]; then
+      backup="$BACKUP_DIR"/templates/colors-pywal.bak
+      if [ ! -e "$backup" ]; then
+        cp "$MATUGEN_DIR/templates/colors-pywal" "$backup"
+      fi
+      rm -rf "$MATUGEN_DIR/templates/colors-pywal"
     fi
-    rm -rf "$MATUGEN_DIR/templates/colors-pywal"
   fi
 
   if [ -e "$MATUGEN_DIR"/config.toml ]; then
