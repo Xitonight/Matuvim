@@ -9,6 +9,7 @@ if ! grep -q "export MATUVIM_DIR" ~/.zshrc; then
   echo "export MATUVIM_DIR=\"$MATUVIM_DIR\"" >>~/.zshrc
 fi
 
+BACKUP_DIR="$HOME/.nvim.bak"
 MATUGEN_DIR="$HOME/.config/matugen"
 REPO_URL="https://github.com/Xitonight/Matuvim"
 
@@ -55,19 +56,19 @@ clone_nvchad() {
 
   if [ -d ~/.config/nvim/ ]; then
     if [ ! -e ~/.config/nvim.bak ]; then
-      cp -R ~/.config/nvim/ ~/.config/nvim.bak/
+      cp -R ~/.config/nvim/ "$BACKUP_DIR/.config/nvim"
     fi
     rm -rf ~/.config/nvim
   fi
   if [ -d ~/.local/share/nvim/ ]; then
     if [ ! -e ~/.local/share/nvim.bak ]; then
-      cp -R ~/.local/share/nvim/ ~/.local/share/nvim.bak
+      cp -R ~/.local/share/nvim/ "$BACKUP_DIR/.local/share/nvim"
     fi
     rm -rf ~/.local/share/nvim
   fi
   if [ -d ~/.local/state/nvim/ ]; then
     if [ -e ~/.local/state/nvim.bak ]; then
-      cp -R ~/.local/state/nvim/ ~/.local/state/nvim.bak
+      cp -R ~/.local/state/nvim/ "$BACKUP_DIR/.local/state/nvim"
     fi
     rm -rf ~/.local/state/nvim
   fi
@@ -86,7 +87,7 @@ stow_dots() {
   fi
 
   if [ ! -L "$MATUGEN_DIR"/templates/colors-pywal ] || [ "$(readlink -f "$MATUGEN_DIR/templates/colors-pywal")" != "$MATUVIM_DIR/matugen-template/colors-pywal" ]; then
-    backup="$MATUGEN_DIR"/templates/colors-pywal.bak
+    backup="$BACKUP_DIR"/templates/colors-pywal.bak
     if [ ! -e "$backup" ]; then
       cp "$MATUGEN_DIR/templates/colors-pywal" "$backup"
     fi
@@ -97,7 +98,7 @@ stow_dots() {
     python3 "$MATUVIM_DIR"/adjustMatugenToml.py
   fi
 
-  stow --target="$HOME"/.config/matugen/templates --dir="$MATUVIM_DIR" matugen-template
+  stow --target="$HOME"/.config/matugen/templates/ --dir="$MATUVIM_DIR" matugen-template
   stow --target="$HOME" --dir="$MATUVIM_DIR" dots
 }
 
